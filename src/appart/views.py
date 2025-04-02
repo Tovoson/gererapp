@@ -1,23 +1,30 @@
 
-from rest_framework import viewsets
+from rest_framework import viewsets, status
 from appart.models import DetailsAppart
-from appart.serializers import DetailsSerializer
+from appart.serializers import AjouterAppartementSerializer, DetailsSerializer
+from rest_framework.views import APIView
+from rest_framework.response import Response
 
 
 class AppartViewSet(viewsets.ModelViewSet):
     queryset = DetailsAppart.objects.all()
     serializer_class = DetailsSerializer
     
-    def create(self, request):
-        serializer = self.serializer_class(data = request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data, status=status.HTTP_201_CREATED) # type: ignore
-           
-        else:
-            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST) # type: ignore
+class AjouterAppartView(APIView):
+    queryset = DetailsAppart.objects.all()
+    serializer_class = AjouterAppartementSerializer
+    
+    def post(self, request, format=None):
+        serializer = self.serializer_class(data=request.data)
         
-    def retrieve(self, request, pk=None):
-        material = self.queryset.get(pk=pk)
-        serializer = self.serializer_class(material)
-        return Response(serializer.data) # type: ignore
+        if serializer.is_valid():
+            numapp = serializer.validated_data["numapp"]
+            
+            if self.queryset.filter(pk=numapp).exists():
+                return Response("Numapp existe déjà", status=400)
+            else:
+                appart = serializer.save()
+                return Response(DetailsSerializer(appart).data, status=201)
+        else:
+            return Response(serializer.errors, status=400)
+        

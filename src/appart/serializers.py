@@ -6,3 +6,9 @@ class DetailsSerializer(serializers.ModelSerializer):
     class Meta:
         model = DetailsAppart
         fields = ['numapp', 'design', 'loyer']
+        
+class AjouterAppartementSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = DetailsAppart
+        fields = ['numapp', 'design', 'loyer']
+    
