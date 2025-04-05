@@ -5,10 +5,14 @@ from appart.models import DetailsAppart
 class DetailsSerializer(serializers.ModelSerializer):
     class Meta:
         model = DetailsAppart
-        fields = ['numapp', 'design', 'loyer']
+        fields = ['id', 'design', 'loyer']
         
-class AjouterAppartementSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = DetailsAppart
-        fields = ['numapp', 'design', 'loyer']
+# class AjouterAppartementSerializer(serializers.ModelSerializer):
+#     class Meta:
+#         model = DetailsAppart
+#         fields = ['numapp', 'design', 'loyer']
     
+# class ModifierSerializer(serializers.ModelSerializer):
+#     class Meta:
+#         model = DetailsAppart
+#         fields = ['numapp', 'design', 'loyer']

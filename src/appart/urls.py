@@ -1,11 +1,10 @@
 from rest_framework import routers
-from appart.views import AjouterAppartView, AppartViewSet
+from appart.views import AppartementViewSet
 from django.urls import include, path
 
 router = routers.DefaultRouter()
-router.register('liste', AppartViewSet, basename='liste')
+router.register('liste', AppartementViewSet, basename='liste')
 
 urlpatterns = [
-    path('', include(router.urls)),
-    path('ajouter/', AjouterAppartView.as_view(), name='ajouter')
+    path('', include(router.urls))
 ]
