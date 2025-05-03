@@ -39,7 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'appart',
     'corsheaders',
-    'rest_framework'
+    'rest_framework',
+    'drf-yasg'
 ]
 
 REST_FRAMEWORK = {
@@ -90,7 +91,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'gererappartement',
         'USER': 'root',
-        'PASSWORD': 'MaraGhost2021',
+        'PASSWORD': '',
         'HOST': '127.0.0.1',  # Ou l'adresse de votre serveur
         'PORT': '3306',       # Port par défaut de MySQL
     }
@@ -138,3 +139,4 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 CORS_ALLOW_ALL_ORIGINS = True
+
